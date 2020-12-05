@@ -5,8 +5,8 @@
         <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
         <ProjectGuid>{00A8F3DA-3C12-4878-8665-E0617C3FEA88}</ProjectGuid>
         <OutputType>Library</OutputType>
-        <RootNamespace>AoC2020Comon</RootNamespace>
-        <AssemblyName>AoC2020Comon</AssemblyName>
+        <RootNamespace>Aoc2020.Common</RootNamespace>
+        <AssemblyName>Aoc2020.Common</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|anycpu' ">
@@ -34,12 +34,18 @@
         <Compile Include="FileUtilities.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Content\" />
+        <Folder Include="Content\" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Content\Day1Input.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+        <Content Include="Content\Day1Input.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Content\Day2Input.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Content\Day3Input.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
     <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

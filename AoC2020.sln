@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.808.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoC2020Comon", "AoC2020Comon\AoC2020Comon.csproj", "{00A8F3DA-3C12-4878-8665-E0617C3FEA88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "AoC2020Comon\Common.csproj", "{00A8F3DA-3C12-4878-8665-E0617C3FEA88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1", "Day1\Day1.csproj", "{105F119F-AA06-4C70-94BD-ECFDD38E374F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2", "Day2\Day2.csproj", "{195777B8-DB44-4A2F-97DE-28721B60F818}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day3", "Day3\Day3.csproj", "{AD926DFD-33E9-48E5-8411-F0897345736B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{105F119F-AA06-4C70-94BD-ECFDD38E374F}.Debug|anycpu.Build.0 = Debug|anycpu
 		{105F119F-AA06-4C70-94BD-ECFDD38E374F}.Release|anycpu.ActiveCfg = Release|anycpu
 		{105F119F-AA06-4C70-94BD-ECFDD38E374F}.Release|anycpu.Build.0 = Release|anycpu
+		{195777B8-DB44-4A2F-97DE-28721B60F818}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{195777B8-DB44-4A2F-97DE-28721B60F818}.Debug|anycpu.Build.0 = Debug|anycpu
+		{195777B8-DB44-4A2F-97DE-28721B60F818}.Release|anycpu.ActiveCfg = Release|anycpu
+		{195777B8-DB44-4A2F-97DE-28721B60F818}.Release|anycpu.Build.0 = Release|anycpu
+		{AD926DFD-33E9-48E5-8411-F0897345736B}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{AD926DFD-33E9-48E5-8411-F0897345736B}.Debug|anycpu.Build.0 = Debug|anycpu
+		{AD926DFD-33E9-48E5-8411-F0897345736B}.Release|anycpu.ActiveCfg = Release|anycpu
+		{AD926DFD-33E9-48E5-8411-F0897345736B}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
