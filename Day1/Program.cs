@@ -8,7 +8,7 @@ using Aoc2020.Common;
 namespace Day1
 {
     // https://adventofcode.com/2020/day/1
-    class Program
+    public static class Program
     {
         private static List<int> numbers = new List<int>();
 

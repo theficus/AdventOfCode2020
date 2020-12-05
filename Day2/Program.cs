@@ -4,7 +4,8 @@ using Aoc2020.Common;
 
 namespace Day2
 {
-    class Program
+    // https://adventofcode.com/2020/day/2
+    public static class Program
     {
         public static void Main(string[] args)
         {
