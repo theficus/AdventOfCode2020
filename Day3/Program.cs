@@ -7,7 +7,7 @@ using Aoc2020.Common;
 namespace Day3
 {
     // https://adventofcode.com/2020/day/3
-    public static class MainClass
+    public static class Program
     {
         private static List<string> map = new List<string>();
         public static void Main(string[] args)
