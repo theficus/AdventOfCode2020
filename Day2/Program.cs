@@ -35,7 +35,5 @@ namespace Day2
 
             return new Tuple<int, int>(valid1, valid2);
         }
-
-
     }
 }
