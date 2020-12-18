@@ -9,7 +9,7 @@ namespace Aoc2020.Common
         public static void WriteHeader(string text)
         {
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine(text);
+            Console.WriteLine(text.ToUpperInvariant());
             Console.WriteLine("------------------------------------------------------");
         }
     }

@@ -34,6 +34,14 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Machine.cs" />
+    <Compile Include="Instruction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AoC2020Comon\Common.csproj">
+      <Project>{00A8F3DA-3C12-4878-8665-E0617C3FEA88}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
