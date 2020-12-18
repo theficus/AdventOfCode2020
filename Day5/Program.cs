@@ -5,6 +5,7 @@ using Aoc2020.Common;
 
 namespace Day5
 {
+    // https://adventofcode.com/2020/day/5
     class Program
     {
         public static void Main(string[] args)
