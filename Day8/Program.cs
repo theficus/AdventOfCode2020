@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Aoc2020.Common;
 
@@ -25,33 +23,71 @@ acc +1
 jmp -4
 acc +6";
 
-        private const int SampleExpected = 5;
+        private const int Sample1Expected = 5;
+        private const int Sample2Expected = 8;
 
         public static void Main(string[] args)
         {
-            int v = Run(SampleProgram.Split('\n').ToList());
-            Logging.WriteHeader("Sample");
-            Assert.AreEqual(SampleExpected, v);
+            Logging.WriteHeader("Sample 1");
+            Machine m = SetupMachine(SampleProgram.Split('\n').ToList());
+            m.Debug = true;
+            m.Run();
+            Assert.AreEqual(Sample1Expected, m.Registers.Accumulator);
 
-            v = Run(FileUtilities.GetFileContents("Day8Input.txt"));
+            Logging.WriteHeader("Sample 2");
+            m.Instructions[m.Instructions.Count - 2].Op = "nop";
+            m.Run();
+            Assert.AreEqual(Sample2Expected, m.Registers.Accumulator);
+
             Logging.WriteHeader("Goal 1");
-            Console.WriteLine($"Goal 1: {v}");
+            FileUtilities.GetFileContents("Day8Input.txt");
+            m = SetupMachine(FileUtilities.GetFileContents("Day8Input.txt"));
+            m.Run();
+            Console.WriteLine($"Goal 1: {m.Registers.Accumulator}");
+
+            Logging.WriteHeader("Goal 2");
+            for (int i = 0; i < m.Instructions.Count; i++)
+            {
+                Instruction oi = m.Instructions[i];
+                Instruction ni = null;
+                if (oi.Op == "nop")
+                {
+                    ni = (Instruction)oi.Clone();
+                    ni.Op = "jmp";
+                }
+                else if (oi.Op == "jmp")
+                {
+                    ni = (Instruction)oi.Clone();
+                    ni.Op = "nop";
+                }
+                else
+                {
+                    continue;
+                }
+
+                try
+                {
+                    m.Instructions[i] = ni;
+
+                    if (m.Run() == true)
+                    {
+                        Console.WriteLine($"Goal 2: {m.Registers.Accumulator}");
+                        break;
+                    }
+                }
+                finally
+                {
+                    // Change back
+                    m.Instructions[i] = oi;
+                }
+            }
         }
 
-        private static int Run(IEnumerable<string> code)
+        private static Machine SetupMachine(IEnumerable<string> code)
         {
             Machine m = new Machine();
             code.ToList().ForEach(s => m.AddInstruction(s));
-            m.Start();
-            int lastValue = 0;
-            do
-            {
-                lastValue = m.Accumulator;
-                m.Step();
-            }
-            while (m.LastInstruction.ExecutionCount < 2);
-
-            return lastValue;
+            return m;
         }
     }
 }

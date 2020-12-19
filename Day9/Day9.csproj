@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
-    <ProjectGuid>{0B964C11-5BCD-41E7-B223-189D11FD38D2}</ProjectGuid>
+    <ProjectGuid>{88DE4CC8-89D6-4EF5-AA34-B849F49D5EBE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Day8</RootNamespace>
-    <AssemblyName>Day8</AssemblyName>
+    <RootNamespace>Day9</RootNamespace>
+    <AssemblyName>Day9</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|anycpu' ">
@@ -34,9 +34,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Machine.cs" />
-    <Compile Include="Instruction.cs" />
-    <Compile Include="Registers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AoC2020Comon\Common.csproj">
