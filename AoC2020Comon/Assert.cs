@@ -5,7 +5,9 @@ namespace Aoc2020.Common
     {
         public static void AreEqual(object expected, object actual)
         {
-            if (expected?.Equals(actual) == false)
+            bool? isEqual = expected?.Equals(actual);
+            Console.WriteLine($"[ASSERT] Check is {expected} [{expected?.GetType()}] == {actual} [{actual?.GetType()}]: {isEqual}");
+            if (isEqual == false)
             {
                 throw new InvalidOperationException($"AreEquals failed. Expected: {expected} Actual: {actual}");
             }
