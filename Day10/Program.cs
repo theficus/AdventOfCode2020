@@ -57,19 +57,56 @@ namespace Day10
 10
 3";
 
-        private const long Sample1SetSmallExpected = 7 * 5;
-        private const long Sample1SetLargeExpected = 22 * 10;
-        private const long BuiltInJoltage = 3;
+        private const long Sample1SetSmallExpected1 = 7 * 5;
+        private const long Sample1SetSmallExpected2 = 8;
+        private const long Sample1SetLargeExpected1 = 22 * 10;
+        private const long Sample1SetLargeExpected2 = 19208;
+        private const int DeviceJoltage = 3;
 
         public static void Main(string[] args)
         {
-            Logging.WriteHeader("Sample 1 (Small)");
-            Assert.AreEqual(Sample1SetSmallExpected, Goal1(Sample1SetSmall.Split('\n')));
-            Logging.WriteHeader("Sample 1 (Large)");
-            Assert.AreEqual(Sample1SetLargeExpected, Goal1(Sample1SetLarge.Split('\n')));
+            IEnumerable<string> data = Sample1SetSmall.Split('\n');
+            Logging.WriteHeader("Sample 1 (Small) Goal 1");
+            Assert.AreEqual(Sample1SetSmallExpected1, Goal1(data));
 
+            Logging.WriteHeader("Sample 1 (Small) Goal 2");
+            Assert.AreEqual(Sample1SetSmallExpected2, Goal2(data));
+
+            data = Sample1SetLarge.Split('\n');
+            Logging.WriteHeader("Sample 1 (Large)");
+            Assert.AreEqual(Sample1SetLargeExpected1, Goal1(data));
+
+            Logging.WriteHeader("Sample 2 (Small) Goal 2");
+            Assert.AreEqual(Sample1SetLargeExpected2, Goal2(data));
+
+            data = FileUtilities.GetFileContents("Day10Input.txt");
             Logging.WriteHeader("Goal 1");
-            Console.WriteLine(Goal1(FileUtilities.GetFileContents("Day10Input.txt")));
+            Console.WriteLine(Goal1(data));
+
+            Logging.WriteHeader("Goal 2");
+            Console.WriteLine(Goal2(data));
+        }
+
+        private static long Goal2(IEnumerable<string> data)
+        {
+            int[] jolts = new[] { 0 }.Concat(data.Select(int.Parse).OrderBy(j => j)).ToArray();
+
+            // https://en.wikipedia.org/wiki/Memoization
+            Dictionary<int, long> routes = new Dictionary<int, long>();
+            routes.Add(jolts.Max() + DeviceJoltage, 1); // Device value (3 jolts)
+
+            // Build a graph of all the possible paths in reverse
+            foreach (int j in jolts.Reverse())
+            {
+                routes.TryGetValue(j + 1, out long c1);
+                routes.TryGetValue(j + 2, out long c2);
+                routes.TryGetValue(j + 3, out long c3);
+                ////Console.WriteLine($"j:{j} c1:{c1} c2:{c2} c3:{c3} route:{c1 + c2 + c3}");
+                routes[j] = c1 + c2 + c3;
+            }
+
+            // Path to 0 will be the value we want
+            return routes[0];
         }
 
         private static long Goal1(IEnumerable<string> data)
@@ -89,7 +126,7 @@ namespace Day10
                 long n;
                 if (i + 1 >= jolts.Count)
                 {
-                    n = jolts[i] + BuiltInJoltage;
+                    n = jolts[i] + DeviceJoltage;
                 }
                 else
                 {
@@ -102,11 +139,17 @@ namespace Day10
                     continue;
                 }
 
-                Upsert(counts, n - c);
+                long v = n - c;
+                if (v > 3)
+                {
+                    return -1;
+                }
+
+                Upsert(counts, v);
             }
 
             Upsert(counts, jolts.Last()); // last one in the set
-            Upsert(counts, BuiltInJoltage); // built-in adapter
+            Upsert(counts, DeviceJoltage); // built-in adapter
 
             long sum = 1;
             foreach (long k in counts.Values)
